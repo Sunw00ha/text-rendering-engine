@@ -1,6 +1,8 @@
 #include <glad/glad.h> // make sure glad is included before glfw
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include <ft2build.h>
+#include FT_FREETYPE_H
 
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -56,6 +58,7 @@ int main() {
         0.0f, 0.5f, 0.0f
     };
 
+    // VBO is for sending data to the GPU
     // Create our buffer
     unsigned int VBO;
     // printf("%d\n", VBO); // before buffer creation --> 0
@@ -65,10 +68,25 @@ int main() {
 
 
     // Create our "Attribute Buffer"
+    // specifies information about the vertices we had given it
     unsigned int VAO;
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
 
+
+    //FONT STUFF HERE
+    FT_Library ft;
+    FT_Init_FreeType(&ft);
+
+    // store font into our face
+    FT_Face face;
+    FT_New_Face(ft, "fonts/times.ttf", 0, &face); 
+
+    // set pixel size
+    FT_Set_Pixel_Sizes(face, 0, 48);
+
+    // working with letter X
+    FT_Load_Char(face, 'X', FT_LOAD_RENDER);
 
 
     // Send data to the buffer

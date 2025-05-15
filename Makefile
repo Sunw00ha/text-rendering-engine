@@ -6,12 +6,12 @@ CC = gcc # gcc is the compiler for C
 
 CXXFLAGS = -Wall -Wextra -std=c++14 -pedantic \
   -I./include \
-  $(shell pkg-config --cflags glfw3) \
+  $(shell pkg-config --cflags glfw3 freetype2) \
   -I$(shell xcrun --show-sdk-path)/usr/include/c++/v1 \
   -I$(shell xcrun --show-sdk-path)/usr/include
 
 CFLAGS = -I./include # -I means include --> look inside the current directory for the include directory
-LIBS = $(shell pkg-config --libs glfw3)
+LIBS = $(shell pkg-config --libs glfw3 freetype2)
 
 TARGET = output
 # OBJECTS = src/main.o src/glad.output
